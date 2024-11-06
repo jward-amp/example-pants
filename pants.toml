@@ -1,0 +1,38 @@
+[GLOBAL]
+pants_version = "2.22.1"
+backend_packages = [
+    "pants.backend.build_files.fmt.black",
+    "pants.backend.docker",
+    "pants.backend.python",
+    "pants.backend.python.lint.black",
+]
+
+[black]
+install_from_resolve = "python-default"
+requirements = ["//3rdparty/python:reqs#black"]
+args = [
+    "--line-length=100",
+]
+
+[pytest]
+install_from_resolve = "python-default"
+requirements = ["//3rdparty/python:reqs#pytest"]
+
+[python]
+enable_resolves = true
+interpreter_constraints = ["CPython==3.12.*"]
+
+[python-bootstrap]
+search_path = ["<PYENV>"]
+
+[source]
+root_patterns = [
+    "common/python",
+    "project1/python",
+    "project2/python",
+]
+
+[subprocess-environment]
+env_vars.add = [
+    "HOME", # required to build certain packages on MacOS; $HOME doesn't get sent to build process without it
+]

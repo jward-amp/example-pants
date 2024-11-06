@@ -1,0 +1,35 @@
+name: CI
+on:
+  pull_request: { }
+  push:
+    branches: [ 'main' ]
+
+jobs:
+  test:
+    name: Example
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: Setup python
+        uses: actions/setup-python@v5
+        with:
+          python-version-file: '.python-version'
+      - uses: pantsbuild/actions/init-pants@v8  # github.com/pantsbuild/actions/tree/main/init-pants/
+        with:
+          gha-cache-key: v0
+          named-caches-hash: ${{ hashFiles('3rdparty/python/default.lock') }}
+          cache-lmdb-store: 'true'
+          base-branch: 'main'
+      - name: Tailor
+        run: |
+          pants tailor --check ::
+      - name: Lint
+        run: |
+          pants lint ::
+      - name: Package
+        run: |
+          pants package ::
+      - name: Run
+        run: |
+          docker run --rm -e PEX_MODULE=entrypoints.fizzbuzz project2:local
