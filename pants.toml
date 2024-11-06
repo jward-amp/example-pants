@@ -14,6 +14,9 @@ args = [
     "--line-length=100",
 ]
 
+[environments-preview.names]
+docker_linux = "//:docker_linux"
+
 [pytest]
 install_from_resolve = "python-default"
 requirements = ["//3rdparty/python:reqs#pytest"]

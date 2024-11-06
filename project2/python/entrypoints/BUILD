@@ -4,6 +4,7 @@ pex_binary(
         "project2/python/entrypoints/fizzbuzz",
     ],
     layout="packed",
+    environment="docker_linux",
 )
 
 docker_image(
