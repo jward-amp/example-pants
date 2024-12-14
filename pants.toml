@@ -3,6 +3,7 @@ pants_version = "2.22.1"
 backend_packages = [
     "pants.backend.build_files.fmt.black",
     "pants.backend.docker",
+    "pants.backend.experimental.go",
     "pants.backend.python",
     "pants.backend.python.lint.black",
 ]
@@ -31,6 +32,7 @@ search_path = ["<PYENV>"]
 [source]
 root_patterns = [
     "common/python",
+    "project1/golang",
     "project1/python",
     "project2/python",
 ]
