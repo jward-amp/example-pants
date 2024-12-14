@@ -32,7 +32,7 @@ jobs:
           pants package ::
       - name: Run 1
         run: |
-          docker run --rm -e PEX_MODULE=entrypoints.fizzbuzz project2:local
+          docker run --rm -e PEX_MODULE=project2.entrypoints.fizzbuzz project2:local
       - name: Run 2
         run: |
-          docker run --rm -e PEX_MODULE=entrypoints.whichpanda project2:local
+          docker run --rm -e PEX_MODULE=project2.entrypoints.whichpanda project2:local
