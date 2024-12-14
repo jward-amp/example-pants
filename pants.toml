@@ -41,3 +41,8 @@ root_patterns = [
 env_vars.add = [
     "HOME", # required to build certain packages on MacOS; $HOME doesn't get sent to build process without it
 ]
+
+[tailor]
+ignore_adding_targets = [
+    "//:root",  # ignore Dockerfile in root of project
+]
